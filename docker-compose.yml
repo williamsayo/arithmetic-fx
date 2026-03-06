@@ -25,7 +25,7 @@ services:
     depends_on:
       - db
     environment:
-      DB_HOST: db
+      DB_HOST: localhost
       DB_PORT: 3306
       # make sure your DB_USER name is correct mine is root
       DB_USER: root
