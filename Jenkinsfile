@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        GIT_REPOSITORY = "https://github.com/williamsayo/speed_calculator"
+        GIT_REPOSITORY = "https://github.com/williamsayo/arithmetic-fx"
         DOCKER_CREDENTIALS = "docker_cred"
         DOCKER_REPOSITORY = "williamsayo/sum-product_fx"
         DOCKER_TAG = "latest"
