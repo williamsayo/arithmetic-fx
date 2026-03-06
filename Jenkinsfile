@@ -55,9 +55,13 @@ pipeline {
     }
     post {
         always {
-            junit '**/target/surefire-reports/*.xml'
-            jacoco execPattern: '**/target/jacoco.exec'
             bat "docker logout"
+        }
+        success {
+            echo "Image published to Docker Hub successfully."
+        }
+        failure {
+            echo 'Pipeline failed. Check the logs above for details.'
         }
     }
 }
