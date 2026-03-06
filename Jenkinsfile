@@ -39,9 +39,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    docker.build("${DOCKERHUB_REPOSITORY}:${DOCKER_IMAGE_TAG}")
-                }
+                bat "docker build -t ${DOCKERHUB_REPOSITORY}:${DOCKER_IMAGE_TAG} ."
             }
         }
 
@@ -55,6 +53,12 @@ pipeline {
             }
         }
 
-    }
+        post {
+            always {
+                junit '**/target/surefire-reports/*.xml'
+                jacoco execPattern: '**/target/jacoco.exec'
+            }
+        }
 
+    }
 }
