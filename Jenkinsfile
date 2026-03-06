@@ -7,9 +7,9 @@ pipeline {
 
     environment {
         GIT_REPOSITORY = "https://github.com/williamsayo/arithmetic-fx"
-        DOCKER_CREDENTIALS = "docker_cred"
-        DOCKER_REPOSITORY = "williamsayo/sum-product_fx"
-        DOCKER_TAG = "latest"
+        DOCKERHUB_CREDENTIALS_ID = "docker_cred"
+        DOCKERHUB_REPOSITORY = "williamsayo/sum-product_fx"
+        DOCKER_IMAGE_TAG = "latest"
     }
     stages {
 
@@ -22,7 +22,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}")
+                    docker.build("${DOCKERHUB_REPOSITORY}:${DOCKER_IMAGE_TAG}")
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CREDENTIALS_ID) {
-                        docker.image("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}").push()
+                        docker.image("${DOCKERHUB_REPOSITORY}:${DOCKER_IMAGE_TAG}").push()
                     }
                 }
             }
