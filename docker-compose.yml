@@ -15,6 +15,11 @@ services:
     volumes:
       - db_data:/var/lib/mysql
 
+  adminer:
+    image: adminer
+    ports:
+      - "8082:8080"
+
   app:
     # image is my own account for the exercise you have to change to your account
     #IMPORTANT docker build -t yourname/sum-product-fx .
@@ -25,7 +30,7 @@ services:
     depends_on:
       - db
     environment:
-      DB_HOST: localhost
+      DB_HOST: db
       DB_PORT: 3306
       # make sure your DB_USER name is correct mine is root
       DB_USER: root
